@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "1075430357081",
+    "project_id": "thehomeassist-a21a1",
+    "storage_bucket": "thehomeassist-a21a1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1075430357081:android:e41b41a588cb091d879948",
+        "android_client_info": {
+          "package_name": "com.TheHomeAssist.TheKitchenAssistant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1075430357081-d982kg0ab43h1viq0kj5pmsmvcqbgoqd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwyIFIzM0twAInsxeVlr-w8CiCwGtQO8M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1075430357081-d982kg0ab43h1viq0kj5pmsmvcqbgoqd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1075430357081:android:e614557343ed68dc879948",
+        "android_client_info": {
+          "package_name": "com.thekitchenassistant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1075430357081-d982kg0ab43h1viq0kj5pmsmvcqbgoqd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwyIFIzM0twAInsxeVlr-w8CiCwGtQO8M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1075430357081-d982kg0ab43h1viq0kj5pmsmvcqbgoqd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
