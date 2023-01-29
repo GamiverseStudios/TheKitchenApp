@@ -9,6 +9,7 @@ import {
   Alert,
 } from 'react-native';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
+import RecipeCard from '../components/RecipeCard';
 
 import PostCard from '../components/PostCard';
 
@@ -221,7 +222,7 @@ const HomeScreen = ({navigation}) => {
           <FlatList
             data={posts}
             renderItem={({item}) => (
-              <PostCard
+              <RecipeCard
                 item={item}
                 onDelete={handleDelete}
                 onPress={() =>

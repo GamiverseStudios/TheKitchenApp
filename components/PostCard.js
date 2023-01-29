@@ -87,22 +87,11 @@ const PostCard = ({item, onDelete, onPress}) => {
         </UserInfoText>
       </UserInfo>
       <PostText>{item.post}</PostText>
-      {/* {item.postImg != null ? <PostImg source={{uri: item.postImg}} /> : <Divider />} */}
-      {item.postImg != null ? (
-        <ProgressiveImage
-          defaultImageSource={require('../assets/default-img.jpg')}
-          source={{uri: item.postImg}}
-          style={{width: '100%', height: 250}}
-          resizeMode="cover"
-        />
-      ) : (
-        <Divider />
-      )}
-
+      <Divider/>
       <InteractionWrapper>
         <Interaction active={item.liked}>
           <Ionicons name={likeIcon} size={25} color={likeIconColor} />
-          <InteractionText active={item.liked}>{likeText}</InteractionText>
+          <InteractionText active={item.liked}>Likeeeeeeeeee</InteractionText>
         </Interaction>
         <Interaction>
           <Ionicons name="md-chatbubble-outline" size={25} />
