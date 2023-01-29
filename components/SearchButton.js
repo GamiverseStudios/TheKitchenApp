@@ -11,13 +11,6 @@ const SearchButton = () => {
     const [data, setData] = useState(ingredients);
     const [selectedIngredients, setSelectedIngredients] = useState([]);
     const searchRef = useRef();
-    const [displayDropdown, setDisplayDropdown] = useState(false);
-    const handleDropdown = () => {
-        setDisplayDropdown((prevState) => !prevState);
-      };
-    const closeDropdown = () => {
-        setDisplayDropdown(false);
-    } 
     const onSearch = search => {
       if (search !== '') {
         let tempData = data.filter(item => {
@@ -164,19 +157,6 @@ const SearchButton = () => {
         <View style={styles.btnTxtWrapper}>
             <Text style={[styles.buttonText]}>Select Ingredients now</Text>
         </View>   
-
-
-        {/* {clicked ? (
-          <Image
-            source={require('./upload.png')}
-            style={{width: 20, height: 20}}
-          />
-        ) : (
-          <Image
-            source={require('./dropdown.png')}
-            style={{width: 20, height: 20}}
-          />
-        )} */}
       </TouchableOpacity>
       {clicked ? (
         <Dropdown/>
@@ -188,14 +168,6 @@ const SearchButton = () => {
 export default SearchButton;
 
 const styles = StyleSheet.create({
-    buttonContainer: {
-      marginTop: 10,
-      borderRadius: 30,
-      width: '70%',
-      height: windowHeight / 15,
-      padding: 10,
-      flexDirection: 'row'
-    },
     iconWrapper: {
       width: 30,
       justifyContent: 'center',

@@ -12,16 +12,19 @@ import ProfileScreen from '../screens/ProfileScreen';
 import AddPostScreen from '../screens/AddPostScreen';
 import MessagesScreen from '../screens/MessagesScreen';
 import EditProfileScreen from '../screens/EditProfileScreen';
+import RecipeScreen from '../screens/RecipeScreen';
+import PlanningScreen from '../screens/PlanningScreen';
+import ShoppingListScreen from '../screens/ShoppingList';
 import { UserImg } from '../styles/MessageStyles';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-const FeedStack = ({navigation}) => (
+const RecipeStack = ({navigation}) => (
   <Stack.Navigator>
     <Stack.Screen
       name="The Kitchen Assistant"
-      component={HomeScreen}
+      component={RecipeScreen}
       options={{
         headerTitleAlign: 'center',
         headerTitleStyle: {
@@ -59,8 +62,8 @@ const FeedStack = ({navigation}) => (
       }}
     />
     <Stack.Screen
-      name="AddPost"
-      component={AddPostScreen}
+      name="PlanningScreen"
+      component={PlanningScreen}
       options={{
         title: '',
         headerTitleAlign: 'center',
@@ -96,8 +99,94 @@ const FeedStack = ({navigation}) => (
         ),
       }}
     />
+    <Stack.Screen
+      name="ShoppingListScreen"
+      component={ShoppingListScreen}
+      options={{
+        title: '',
+        headerTitleAlign: 'center',
+        headerStyle: {
+          backgroundColor: '#fff',
+          shadowColor: '#fff',
+          elevation: 0,
+        },
+        headerBackTitleVisible: false,
+        headerBackImage: () => (
+          <View style={{marginLeft: 15}}>
+            <Ionicons name="arrow-back" size={25} color="#2e64e5" />
+          </View>
+        ),
+      }}
+    />
   </Stack.Navigator>
 );
+
+const PlanningStack = ({navigation}) => (
+    <Stack.Navigator>
+        <Stack.Screen
+        name="PlanningScreen"
+        component={PlanningScreen}
+        options={{
+            title: '',
+            headerTitleAlign: 'center',
+            headerStyle: {
+            backgroundColor: '#2e64e515',
+            shadowColor: '#2e64e515',
+            elevation: 0,
+            },
+            headerBackTitleVisible: false,
+            headerBackImage: () => (
+            <View style={{marginLeft: 15}}>
+                <Ionicons name="arrow-back" size={25} color="#2e64e5" />
+            </View>
+            ),
+        }}
+        />
+        <Stack.Screen
+        name="ShoppingListScreen"
+        component={ShoppingListScreen}
+        options={{
+            title: '',
+            headerTitleAlign: 'center',
+            headerStyle: {
+            backgroundColor: '#fff',
+            shadowColor: '#fff',
+            elevation: 0,
+            },
+            headerBackTitleVisible: false,
+            headerBackImage: () => (
+            <View style={{marginLeft: 15}}>
+                <Ionicons name="arrow-back" size={25} color="#2e64e5" />
+            </View>
+            ),
+        }}
+        />
+    </Stack.Navigator>
+  );
+
+const ShoppingListStack = ({navigation}) => (
+    <Stack.Navigator>
+        <Stack.Screen
+        name="ShoppingListScreen"
+        component={ShoppingListScreen}
+        options={{
+            title: '',
+            headerTitleAlign: 'center',
+            headerStyle: {
+            backgroundColor: '#fff',
+            shadowColor: '#fff',
+            elevation: 0,
+            },
+            headerBackTitleVisible: false,
+            headerBackImage: () => (
+            <View style={{marginLeft: 15}}>
+                <Ionicons name="arrow-back" size={25} color="#2e64e5" />
+            </View>
+            ),
+        }}
+        />
+    </Stack.Navigator>
+  );
 
 const MessageStack = ({navigation}) => (
   <Stack.Navigator>
@@ -158,9 +247,9 @@ const AppStack = () => {
       }}>
       <Tab.Screen
         name="Home"
-        component={FeedStack}
+        component={RecipeStack}
         options={({route}) => ({
-          tabBarLabel: 'Home',
+          tabBarLabel: 'Recipe',
           // tabBarVisible: route.state && route.state.index === 0,
           tabBarIcon: ({color, size}) => (
             <MaterialCommunityIcons
@@ -171,25 +260,36 @@ const AppStack = () => {
           ),
         })}
       />
-      <Tab.Screen
-        name="Messages"
-        component={MessageStack}
+
+    <Tab.Screen
+        name="Planning"
+        component={PlanningStack}
         options={({route}) => ({
-          tabBarVisible: getTabBarVisibility(route),
-          // Or Hide tabbar when push!
-          // https://github.com/react-navigation/react-navigation/issues/7677
-          // tabBarVisible: route.state && route.state.index === 0,
-          // tabBarLabel: 'Home',
+          tabBarLabel: 'Pantry',
           tabBarIcon: ({color, size}) => (
             <Ionicons
-              name="chatbox-ellipses-outline"
+              name="fast-food-outline"
               color={color}
               size={size}
             />
           ),
         })}
-      />
-      <Tab.Screen
+    />    
+    <Tab.Screen
+        name="ShoppingList"
+        component={ShoppingListStack}
+        options={({route}) => ({
+          tabBarLabel: 'ShoppingList',
+          tabBarIcon: ({color, size}) => (
+            <Ionicons
+              name="list"
+              color={color}
+              size={size}
+            />
+          ),
+        })}
+    />    
+    <Tab.Screen
         name="Profile"
         component={ProfileStack}
         options={{
@@ -201,8 +301,6 @@ const AppStack = () => {
       />
     </Tab.Navigator>
   );
-
-
 };
 
 export default AppStack;
