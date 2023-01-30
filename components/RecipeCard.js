@@ -7,6 +7,8 @@ import {
   Container,
   Card,
   UserInfo,
+  FlatList,
+  Text,
   RecipeInfo,
   RecipeImg,
   UserImg,
@@ -54,6 +56,7 @@ const RecipeCard = ({item, onDelete, onPress}) => {
         
     // }
 
+  // const listItems = item.Ingredients.map((ingredients) => <li><Text>{ingredients}</Text></li>);
   return (
     <Card key={item.name}>
       <RecipeInfo>
@@ -66,14 +69,29 @@ const RecipeCard = ({item, onDelete, onPress}) => {
         <RecipeInfoText>
           <TouchableOpacity onPress={onPress}>
             <RecipeName>
-                {item.name}
+                {item.name} ({item.hindi_name})
             </RecipeName>
           </TouchableOpacity>
-          <CookTime>{item.cookingtime}</CookTime>
+          <CookTime>Cooking Time  : {item.cooking_time}</CookTime>
+          <CookTime>Preparation Time : {item.prep_time}</CookTime>
         </RecipeInfoText>
       </RecipeInfo>
       <Divider />
-      <RecipeDetails>Ingredient Details will come here</RecipeDetails>
+      <RecipeDetails>
+        {
+        
+        /* <FlatList
+            data={item.Ingredients.map((ingredients) => {ingredients : ingredients})}
+            renderItem={(ingredients) => {
+                console.log(ingredients);
+                return (
+                <View style={{ marginBottom: 10 }}>
+                    <Text style={{ fontSize: 20 }}>{ingredients}</Text>
+                </View>
+                );
+            }}
+            /> */}
+      </RecipeDetails>
       <Divider />
       <InteractionWrapper>
         <Interaction onPress={() => PlanForBreakFast}>

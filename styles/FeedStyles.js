@@ -26,6 +26,7 @@ export const RecipeInfo = styled.View`
     flex-direction: row;
     justify-content: flex-start;
     padding: 15px;
+    padding-bottom: 0px;
 `;
 
 export const UserImg = styled.Image`
