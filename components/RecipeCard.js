@@ -98,22 +98,7 @@ const RecipeCard = ({item, onDelete, onPress}) => {
         />
       </RecipeInfoText>
       <Divider />
-      <PlanningAreaWrapper>
-        <PlanningButton onPress={() => PlanForBreakFast()}>
-          <Button> Plan for BreakFast</Button>
-        </PlanningButton>
-        <PlanningButton onPress={() => PlanForLunch()}>
-          <Button> Plan for Lunch</Button>
-        </PlanningButton>
-      </PlanningAreaWrapper>
-      <PlanningAreaWrapper>
-        <PlanningButton onPress={() => PlanForDinner()}>
-          <Button> Plan for Dinner</Button>
-        </PlanningButton>
-        <PlanningButton onPress={() => PlanForSnacks()}>
-          <Button> Plan for Snacks</Button>
-        </PlanningButton>
-      </PlanningAreaWrapper>
+            {/* TODO : Add fucntions to show options to add to breakfast or lunch or snacks or dinner on clicking this card*/}
     </Card>
   );
 };
