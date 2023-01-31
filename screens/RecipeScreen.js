@@ -60,48 +60,11 @@ const RecipeScreen = ({navigation}) => {
 
   return (
     <View style={{flex:1, alignItems:'center', backgroundColor: '#fff',padding: 20,}}>
-          <Text style={{marginTop: 10, fontSize: 30, fontWeight: 'bold'}}> What should I cook Today? </Text>
-          <View style={{alignItems:'center', backgroundColor: '#fff', flexDirection:'row', zIndex:1}}>
-            <RadioButton
-                value="first"
-                status={ recommendFrom === 'Pantry' ? 'checked' : 'unchecked' }
-                onPress={() => {
-                    console.log("the details are : " + recipeDetails);
-                    setRecommendFrom('Pantry')
-                }}
-            /> 
-            <Text>Recommend Dishes from Pantry Ingredients</Text>
-            
-        </View>
-        <View style={{alignItems:'center', backgroundColor: '#fff', flexDirection:'row', zIndex:1}}>
-            <RadioButton
-                value="second"
-                status={ recommendFrom === 'Select Manully' ? 'checked' : 'unchecked' }
-                onPress={() => setRecommendFrom('Select Manully')}
-            />
-            <Text>Manually Select available ingredients             </Text>
-        </View>
-    <View>
-        {recommendFrom === 'Pantry' ? 
-            (   
-                // <SafeAreaView style={{flex:1, backgroundColor: '#fff', zIndex: 0}}>
-                // <Text style={{fontSize: 18, fontWeight: 'bold', alignItems: 'center', padding: 10}}>Recommnded Recipes using Pantry Items</Text>
-                // {
-                //     loading?(<View></View>) : (<RecipeCard item={recipeDetails[0]} />)
-                // }
-                // </SafeAreaView>
-                <RecipeRecommendationFromPantry recipeDetails={recipeDetails} loading = {loading} />
-            ) : (
-            <View>
-                <SearchButton/>
-                <View style={{flex:1, backgroundColor: '#fff', zIndex: 0}}>
-                    <Text style={{fontSize: 20, fontWeight: 'bold', alignItems: 'center', flex:1}}>Recommnded Recipes</Text>
-                </View> 
-            </View>)}
-
+        <Text style={{marginTop: 10, fontSize: 30, fontWeight: 'bold'}}> What should I cook Today? </Text>
+        <View>
+            <RecipeRecommendationFromPantry recipeDetails={recipeDetails} loading = {loading} />
+         </View>
     </View>
-
-</View>
   );
 };
 

@@ -16,6 +16,7 @@ import RecipeScreen from '../screens/RecipeScreen';
 import PlanningScreen from '../screens/PlanningScreen';
 import ShoppingListScreen from '../screens/ShoppingList';
 import { UserImg } from '../styles/MessageStyles';
+import { kitchestoreScreen } from '../components/KitchenFirestoreManager';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
