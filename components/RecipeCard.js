@@ -1,14 +1,12 @@
 import React, {useContext, useEffect, useState} from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import Alert from 'react-native';
+import Alert, {FlatList,View, Text} from 'react-native';
 import FormButton from './FormButton';
 
 import {
   Container,
   Card,
   UserInfo,
-  FlatList,
-  Text,
   RecipeInfo,
   RecipeImg,
   UserImg,
@@ -25,6 +23,10 @@ import {
   RecipeName,
   CookTime,
   RecipeDetails,
+  IngredientTitle,
+  IngredientItems,
+  PlanningAreaWrapper,
+  PlanningButton
 } from '../styles/FeedStyles';
 
 import ProgressiveImage from './ProgressiveImage';
@@ -55,8 +57,10 @@ const RecipeCard = ({item, onDelete, onPress}) => {
 
         
     // }
-
-  // const listItems = item.Ingredients.map((ingredients) => <li><Text>{ingredients}</Text></li>);
+    const ingredients = [];
+    item.Ingredients.map((ingredient) => {ingredients.push({"name" : ingredient})});
+    console.log(ingredients);
+  //const listItems = item.Ingredients.map((ingredients) => <li><Text>{ingredients}</Text></li>);
   return (
     <Card key={item.name}>
       <RecipeInfo>
@@ -77,36 +81,39 @@ const RecipeCard = ({item, onDelete, onPress}) => {
         </RecipeInfoText>
       </RecipeInfo>
       <Divider />
-      <RecipeDetails>
-        {
-        
-        /* <FlatList
-            data={item.Ingredients.map((ingredients) => {ingredients : ingredients})}
-            renderItem={(ingredients) => {
-                console.log(ingredients);
+      <RecipeInfoText>
+        <IngredientTitle>
+            Ingredients : 
+        </IngredientTitle>
+        <FlatList
+            data={ingredients}  
+            renderItem={(item) => {
+                console.log("The ingredient is : ", item.item.name);
                 return (
-                <View style={{ marginBottom: 10 }}>
-                    <Text style={{ fontSize: 20 }}>{ingredients}</Text>
-                </View>
+                <RecipeInfoText>
+                    <IngredientItems>{`\u2022 ${item.item.name}`}</IngredientItems>
+                </RecipeInfoText>
                 );
             }}
-            /> */}
-      </RecipeDetails>
+        />
+      </RecipeInfoText>
       <Divider />
-      <InteractionWrapper>
-        <Interaction onPress={() => PlanForBreakFast}>
+      <PlanningAreaWrapper>
+        <PlanningButton onPress={() => PlanForBreakFast()}>
           <Button> Plan for BreakFast</Button>
-        </Interaction>
-        <Interaction onPress={() => PlanForLunch}>
+        </PlanningButton>
+        <PlanningButton onPress={() => PlanForLunch()}>
           <Button> Plan for Lunch</Button>
-        </Interaction>
-        <Interaction onPress={() => PlanForDinner}>
+        </PlanningButton>
+      </PlanningAreaWrapper>
+      <PlanningAreaWrapper>
+        <PlanningButton onPress={() => PlanForDinner()}>
           <Button> Plan for Dinner</Button>
-        </Interaction>
-        <Interaction onPress={() => PlanForSnacks}>
+        </PlanningButton>
+        <PlanningButton onPress={() => PlanForSnacks()}>
           <Button> Plan for Snacks</Button>
-        </Interaction>
-      </InteractionWrapper>
+        </PlanningButton>
+      </PlanningAreaWrapper>
     </Card>
   );
 };
@@ -114,14 +121,14 @@ const RecipeCard = ({item, onDelete, onPress}) => {
 export default RecipeCard;
 
 const PlanForBreakFast = () => {
-    Alert.alert('Plan for BreakFast');
+    console.log('Planned for Breakfast');
 }
 const PlanForLunch = () => {
-    Alert.alert('Plan for Lunch');
+    console.log('Planned for Breakfast');
 }
 const PlanForDinner = () => {
-    Alert.alert('Plan for Dinner');
+    console.log('Planned for Breakfast');
 }
 const PlanForSnacks = () => {
-    Alert.Alert('Plan for Snacks');
+    console.log('Planned for Breakfast');
 }

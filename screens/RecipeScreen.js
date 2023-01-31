@@ -10,6 +10,8 @@ import {
 import { RadioButton } from 'react-native-paper';
 import SearchButton from '../components/SearchButton';
 import RecipeCard from '../components/RecipeCard';
+import { RecipeRecommendationFromPantry } from '../components/RecipeRecommendation';
+import { Divider } from '../styles/FeedStyles';
 const RecipeScreen = ({navigation}) => {
     const [recipeDetails, setRecipeDetails] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -82,12 +84,13 @@ const RecipeScreen = ({navigation}) => {
     <View>
         {recommendFrom === 'Pantry' ? 
             (   
-                <SafeAreaView style={{flex:1, backgroundColor: '#fff', zIndex: 0}}>
-                <Text style={{fontSize: 20, fontWeight: 'bold', alignItems: 'center', flex:1}}>Recommnded Recipes based on your Pantry</Text>
-                {
-                    loading?(<View></View>) : (<RecipeCard item={recipeDetails[0]} />)
-                }
-                </SafeAreaView>
+                // <SafeAreaView style={{flex:1, backgroundColor: '#fff', zIndex: 0}}>
+                // <Text style={{fontSize: 18, fontWeight: 'bold', alignItems: 'center', padding: 10}}>Recommnded Recipes using Pantry Items</Text>
+                // {
+                //     loading?(<View></View>) : (<RecipeCard item={recipeDetails[0]} />)
+                // }
+                // </SafeAreaView>
+                <RecipeRecommendationFromPantry recipeDetails={recipeDetails} loading = {loading} />
             ) : (
             <View>
                 <SearchButton/>

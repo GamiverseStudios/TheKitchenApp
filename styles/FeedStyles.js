@@ -8,9 +8,10 @@ export const Container = styled.View`
 `;
 
 export const Card = styled.View`
-    background-color: #f8f8f8;
+    align-self: center;
+    background-color: #fff;
     elevation: 10;
-    width: 100%;
+    width: 90%;
     margin-bottom: 20px;
     border-radius: 10px;
     shadowColor: #52006A,  
@@ -78,6 +79,19 @@ export const CookTime = styled.Text`
     color: #666;
 `;
 
+export const IngredientTitle = styled.Text`
+font-size: 16px;
+font-weight: bold;
+font-family: 'Lato-Regular';
+padding-bottom: 4px;
+`;
+
+export const IngredientItems = styled.Text`
+font-size: 14px;
+font-family: 'Lato-Regular';
+color: #666;
+`;
+
 export const PostText = styled.Text`
     font-size: 14px;
     font-family: 'Lato-Regular';
@@ -107,11 +121,22 @@ export const Divider = styled.View`
     width: 92%;
     align-self: center;
     margin-top: 15px;
+    margin-bottom: 15px;
 `;
 
 export const InteractionWrapper = styled.View`
     justify-content: space-around;
     padding: 15px;
+`;
+
+export const PlanningAreaWrapper = styled.View`
+    justify-content: space-around;
+`;
+
+export const PlanningButton = styled.TouchableOpacity`
+    background-color: #ccc;
+    border-radius: 5px;
+    margin: 2px;
 `;
 
 export const Interaction = styled.TouchableOpacity`
