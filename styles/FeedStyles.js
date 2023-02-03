@@ -25,7 +25,6 @@ export const PantryCategoryCard = styled.TouchableOpacity`
     margin-right: 5px;
     border-radius: 10px;
     shadowColor: #52006A;
-    height: 100;
 `;
 
 export const UserInfo = styled.View`

@@ -2,6 +2,7 @@
 
 
 import { useContext, useEffect, useState } from "react";
+
 import { SafeAreaView, Text, View } from "react-native";
 import PantryCard, { clickedValue } from "./PantryCard";
 import { ScrollView } from "react-native";
@@ -29,10 +30,10 @@ const PantryTempName = () => {
                 category,
                 unit
                 } = doc.data();
-                ingredientsList.push(abc);
+                ingredientList.push(abc);
             });
+            settingPantryTypeList();
 
-            setIngredientList(ingredientsList);
             console.log("Ingredient list is ", ingredientList);
             if (loading) {
                 setLoading(false);
@@ -55,20 +56,20 @@ const PantryTempName = () => {
     }
 
     useEffect(() => {
-        fetchIngredientsList();
-        if(!loading) settingPantryTypeList()               
+        fetchIngredientsList();         
       }, []);
 
     return (
         <View style={{backgroundColor: '#fff', flex:1, justifyContent: 'flex-start'}}>
                 <View>
-                    <Text style={{fontSize: 18, fontWeight: 'bold'}}>Recommnded using Pantry Items</Text>
+                    <Text style={{fontSize: 25, fontWeight: 'bold', alignSelf: 'center', padding: 10}}>Recommnded Items using Pantry Items</Text>
                 </View>
+            
                 { loading? 
                     (<View>
                         <Text> Please wait ...</Text>
                     </View>)
-                    : (
+                    : (<View style={{backgroundColor: '#fff', flex:1, justifyContent: 'flex-start'}}>
                             <View style={{padding : 15, backgroundColor : '#f3f7f0'}}>   
                             <FlatList 
                                 scrollEnabled = {true}
@@ -79,11 +80,14 @@ const PantryTempName = () => {
                                     return( 
                                     <PantryCard item={item} />)
                             }}/>
+                            </View>
                             <PantryIngredientsManager/>
-
-                        </View>
+                            </View>
                       )
                 }
+                
+                {/* <View><Text>Hello </Text></View> */}
+                
         </View>
     )
 }
