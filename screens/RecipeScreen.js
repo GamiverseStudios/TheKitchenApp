@@ -9,11 +9,11 @@ import {
 } from 'react-native';
 import { RadioButton } from 'react-native-paper';
 import SearchButton from '../components/SearchButton';
-import RecipeCard from '../components/RecipeCard';
-import { RecipeRecommendationFromPantry } from '../components/RecipeRecommendation';
+import RecipeCard from '../components/Recipe/RecipeCard';
+import { RecipeRecommendationFromPantry } from '../components/Recipe/RecipeRecommendation';
 import { Divider } from '../styles/FeedStyles';
 const RecipeScreen = ({navigation}) => {
-    const [recipeDetails, setRecipeDetails] = useState([]);
+    const [recipeDetails, setRecipeDetails] = useState(null);
     const [loading, setLoading] = useState(true);
     const fetchRecipeDetails = async () => {
         try {
@@ -59,7 +59,7 @@ const RecipeScreen = ({navigation}) => {
 
 
   return (
-    <View style={{flex:1, alignItems:'center', backgroundColor: '#fff',padding: 20,}}>
+    <View style={{alignItems:'center', backgroundColor: '#fff',padding: 20,}}>
         <Text style={{marginTop: 10, fontSize: 30, fontWeight: 'bold'}}> What should I cook Today? </Text>
         <View>
             <RecipeRecommendationFromPantry recipeDetails={recipeDetails} loading = {loading} />

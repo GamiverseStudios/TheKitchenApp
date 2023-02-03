@@ -8,13 +8,24 @@ export const Container = styled.View`
 `;
 
 export const Card = styled.TouchableOpacity`
-    align-self: center;
+    margin-top: 10px;
     background-color: #fff;
     elevation: 10;
-    width: 90%;
+    margin-left: 5px;
+    margin-right: 5px;
     margin-bottom: 20px;
     border-radius: 10px;
     shadowColor: #52006A,  
+`;
+
+export const PantryCategoryCard = styled.TouchableOpacity`
+    background-color: #fff;
+    elevation: 10;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-radius: 10px;
+    shadowColor: #52006A;
+    height: 100;
 `;
 
 export const UserInfo = styled.View`
@@ -28,6 +39,11 @@ export const RecipeInfo = styled.View`
     justify-content: flex-start;
     padding: 15px;
     padding-bottom: 0px;
+`;
+export const PantryCardCategoryInfo = styled.View`
+    flex-direction: row;
+    justufy-content: flex-start;
+    padding: 15px;
 `;
 
 export const UserImg = styled.Image`

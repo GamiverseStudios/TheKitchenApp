@@ -9,7 +9,7 @@ import {
   Alert,
 } from 'react-native';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
-import RecipeCard from '../components/RecipeCard';
+import RecipeCard from '../components/Recipe/RecipeCard';
 
 import PostCard from '../components/PostCard';
 

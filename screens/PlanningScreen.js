@@ -1,23 +1,18 @@
+import React, {useEffect, useState, Fragment} from 'react';
 import {
-    View,
-    Text,
-    Button
-  } from 'react-native';
+  View,
+  Text,
+  ScrollView,
+  SafeAreaView,
+  SkeletonPlaceholder
+} from 'react-native';
+import PantryCard from '../components/Pantry/PantryCard';
+import { PantryCardsScrollView } from '../components/Pantry/PantryCardsScrollView';
 
 
   const PlanningScreen = ({navigation, route}) => {
         return (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-            <Text>You are at Planning Screen!</Text>
-            <Button 
-            onPress={() => navigation.navigate("ShoppingListScreen")}
-            title="Go to ShoppingList Screen"
-            />
-            <Button 
-            onPress={() => navigation.goBack()}
-            title="Go back"
-            />
-          </View>
+                <PantryCardsScrollView loading = {false} />
         );
   };
 

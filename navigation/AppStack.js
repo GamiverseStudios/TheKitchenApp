@@ -66,7 +66,7 @@ const RecipeStack = ({navigation}) => (
       name="PlanningScreen"
       component={PlanningScreen}
       options={{
-        title: '',
+        title: 'The Kitchen Assistant',
         headerTitleAlign: 'center',
         headerStyle: {
           backgroundColor: '#2e64e515',
@@ -147,13 +147,18 @@ const PlanningStack = ({navigation}) => (
         name="PlanningScreen"
         component={PlanningScreen}
         options={{
-            title: '',
+            title: 'The Kitchen Assistant',
             headerTitleAlign: 'center',
-            headerStyle: {
-            backgroundColor: '#2e64e515',
-            shadowColor: '#2e64e515',
-            elevation: 0,
+            headerTitleStyle: {
+                color: '#f3f7f0',
+                fontFamily: 'Kufam-SemiBoldItalic',
+                fontSize: 25,
             },
+            headerStyle: {
+                backgroundColor: '#f2545b',
+                shadowColor: '#fff',
+                elevation: 0,
+              },
             headerBackTitleVisible: false,
             headerBackImage: () => (
             <View style={{marginLeft: 15}}>
@@ -263,7 +268,17 @@ const AppStack = () => {
   return (
     <Tab.Navigator
       tabBarOptions={{
-        activeTintColor: '#2e64e5',
+        activeTintColor: '#f2545b',
+        style: {
+            position: 'absolute',
+            bottom: 20,
+            left:20,
+            right : 20,
+            elevation :5,
+            borderRadius : 15,
+            backgroundColor : '#ffffff',
+            height : 50,
+        }
       }}>
       <Tab.Screen
         name="Home"

@@ -1,13 +1,13 @@
 import React, {useContext, useEffect, useState} from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Alert, {FlatList,View, Text} from 'react-native';
-import FormButton from './FormButton';
+import FormButton from '../FormButton';
 
 import {
   Container,
-  Card,
+  PantryCategoryCard,
   UserInfo,
-  RecipeInfo,
+  PantryCardCategoryInfo,
   RecipeImg,
   UserImg,
   UserName,
@@ -27,9 +27,9 @@ import {
   IngredientItems,
   PlanningAreaWrapper,
   PlanningButton
-} from '../styles/FeedStyles';
+} from '../../styles/FeedStyles';
 
-import ProgressiveImage from './ProgressiveImage';
+import ProgressiveImage from '../ProgressiveImage';
 
 import {AuthContext} from '../navigation/AuthProvider';
 
@@ -37,10 +37,16 @@ import moment from 'moment';
 import {NativeViewGestureHandler, TouchableOpacity} from 'react-native-gesture-handler';
 import firestore from '@react-native-firebase/firestore';
 import { Button } from 'react-native-paper';
+import { sharedData } from './PantrySharedData.android.';
+import { PantryContext } from './PantrySharedData.android.';
 
-
-const RecipeCard = ({item, onDelete, onPress}) => {
-
+const PantryCard = ({item}) => {
+    const { pantryType, setPantryType } = useContext(PantryContext);
+    const handlePress = () => {
+        console.log(pantryType);
+        setPantryType(item);
+      };
+    
     // {
         
     //     recipe {
@@ -57,13 +63,10 @@ const RecipeCard = ({item, onDelete, onPress}) => {
 
         
     // }
-    const ingredients = [];
-    item.Ingredients.map((ingredient) => {ingredients.push({"name" : ingredient})});
-    console.log(ingredients);
   //const listItems = item.Ingredients.map((ingredients) => <li><Text>{ingredients}</Text></li>);
   return (
-    <Card key={item.name}>
-      <RecipeInfo>
+    <PantryCategoryCard key={item} onPress={() => handlePress()}>
+      <PantryCardCategoryInfo>
         <RecipeImg
           source={{
             uri: item.img_url
@@ -71,39 +74,18 @@ const RecipeCard = ({item, onDelete, onPress}) => {
           }}
         />
         <RecipeInfoText>
-          <TouchableOpacity onPress={onPress}>
             <RecipeName>
-                {item.name} ({item.hindi_name})
+                {item}
             </RecipeName>
-          </TouchableOpacity>
-          <CookTime>Cooking Time  : {item.cooking_time}</CookTime>
-          <CookTime>Preparation Time : {item.prep_time}</CookTime>
         </RecipeInfoText>
-      </RecipeInfo>
-      <Divider />
-      <RecipeInfoText>
-        <IngredientTitle>
-            Ingredients : 
-        </IngredientTitle>
-        <FlatList
-            data={ingredients}  
-            renderItem={(item) => {
-                console.log("The ingredient is : ", item.item.name);
-                return (
-                <RecipeInfoText>
-                    <IngredientItems>{`\u2022 ${item.item.name}`}</IngredientItems>
-                </RecipeInfoText>
-                );
-            }}
-        />
-      </RecipeInfoText>
-      <Divider />
+      </PantryCardCategoryInfo>
             {/* TODO : Add fucntions to show options to add to breakfast or lunch or snacks or dinner on clicking this card*/}
-    </Card>
+    </PantryCategoryCard>
   );
 };
 
-export default RecipeCard;
+
+export default PantryCard;
 
 const PlanForBreakFast = () => {
     console.log('Planned for Breakfast');

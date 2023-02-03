@@ -13,7 +13,6 @@ export const kitchestoreScreen = () => {
         <FormButton
                 buttonTitle="Upload1"
                 onPress={() => {
-                   
                     ingredients.forEach((ingredient) => submitPost(ingredient))
                 }
                 }
