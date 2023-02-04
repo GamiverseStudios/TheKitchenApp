@@ -6,7 +6,7 @@ import { useContext, useEffect, useState } from "react";
 import { SafeAreaView, Text, View } from "react-native";
 import PantryCard, { clickedValue } from "./PantryCard";
 import { ScrollView } from "react-native";
-import { PantryProvider, PantryContext} from "./PantrySharedData.android.";
+import { PantryProvider, PantryContext} from "../../navigation/PantrySharedData.android.";
 import { FlatList } from "react-native-gesture-handler";
 import firestore from '@react-native-firebase/firestore';
 import PantryIngredientsManager from "./PantryIngredientsManager";
@@ -30,6 +30,7 @@ const PantryTempName = () => {
                 category,
                 unit
                 } = doc.data();
+                abc['isSelected'] = false;
                 ingredientList.push(abc);
             });
             settingPantryTypeList();

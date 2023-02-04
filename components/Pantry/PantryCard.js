@@ -37,8 +37,8 @@ import moment from 'moment';
 import {NativeViewGestureHandler, TouchableOpacity} from 'react-native-gesture-handler';
 import firestore from '@react-native-firebase/firestore';
 import { Button } from 'react-native-paper';
-import { sharedData } from './PantrySharedData.android.';
-import { PantryContext } from './PantrySharedData.android.';
+import { sharedData } from '../../navigation/PantrySharedData.android.';
+import { PantryContext } from '../../navigation/PantrySharedData.android.';
 
 const PantryCard = ({item}) => {
     const { pantryType, setPantryType } = useContext(PantryContext);
