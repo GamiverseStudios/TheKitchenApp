@@ -7,8 +7,6 @@ import PantryTempName from "./PantryTempName";
 
 export const PantryCardsScrollView = ({loading}) => {
     return (
-            <PantryProvider>
                 <PantryTempName/>
-            </PantryProvider>
     );
 };

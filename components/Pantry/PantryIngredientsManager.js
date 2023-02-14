@@ -1,5 +1,5 @@
 import { PantryContext } from "../../navigation/PantrySharedData.android.";
-import { useContext, useState } from "react";
+import { useCallback, useContext, useState } from "react";
 import Alert, {FlatList,View, Text, TouchableOpacity} from 'react-native';
 import PantryCard from "./PantryCard";
 
@@ -28,11 +28,10 @@ const PantryIngredientsManager = () => {
       return (<View>
         {ingredientList.length == 0 ? (<View></View>) : (
             <View style={{margin : 30}}>
-            <FlatList 
-                contentContainerStyle={{flexDirection : "row", flexWrap : "wrap"}} 
+            <FlatList
                 data={pantryTypeIngredientList}
                 keyExtractor={item=>item.name}
-                    renderItem={({item}) => {
+                    renderItem={useCallback(({item}) => {
                     return( 
                    <View style={{flex: 1, flexDirection: "row", alignContent: 'center', padding : 3}}>
                         <TouchableOpacity 
@@ -43,7 +42,7 @@ const PantryIngredientsManager = () => {
                             </View>
                         </TouchableOpacity>
                    </View>)
-            }} />
+            })} />
             </View>
             )
          }   

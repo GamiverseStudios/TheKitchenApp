@@ -1,6 +1,3 @@
-
-
-
 import { useContext, useEffect, useState } from "react";
 
 import { SafeAreaView, Text, View } from "react-native";
@@ -10,40 +7,52 @@ import { PantryProvider, PantryContext} from "../../navigation/PantrySharedData.
 import { FlatList } from "react-native-gesture-handler";
 import firestore from '@react-native-firebase/firestore';
 import PantryIngredientsManager from "./PantryIngredientsManager";
+import { ingredient_details } from "../../utils/IngredientDetailsFile";
 
 const PantryTempName = () => {
     const {pantryType, setPantryType, pantryTypeList, setPantryTypeList, ingredientList, setIngredientList} = useContext(PantryContext);
     const [loading, setLoading] = useState(true);
 
     const fetchIngredientsList = async () => {
-        try {
-        let ingredientsList = [];
-        await firestore()
-            .collection('ingredients')
-            .get()
-            .then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                const abc =  {
-                name,
-                hindi_name,
-                img_url,
-                category,
-                unit
-                } = doc.data();
-                abc['isSelected'] = false;
-                ingredientList.push(abc);
-            });
-            settingPantryTypeList();
 
-            console.log("Ingredient list is ", ingredientList);
-            if (loading) {
-                setLoading(false);
-              }
-            });
-            
-        } catch (e) {
-        console.log(e);
+        ingredient_details.forEach((item) => {
+            item.img_url = "";
+            item.category = "Others";
+            ingredientList.push(item);
+        });
+
+        console.log("Captured Ingredient List : ", ingredientList[0]);
+        settingPantryTypeList();
+        if(loading) {
+            setLoading(false);
         }
+        // try {
+        // let ingredientsList = [];
+        // await firestore()
+        //     .collection('ingredients_list')
+        //     .get()
+        //     .then((querySnapshot) => {
+        //     querySnapshot.forEach((doc) => {
+        //         const abc =  {
+        //         name,
+        //         hindi_name,
+        //         category,
+        //         } = doc.data();
+        //         abc['isSelected'] = false;
+        //         abc['img_url'] = '';
+        //         ingredientList.push(abc);
+        //     });
+        //     settingPantryTypeList();
+
+        //     console.log("Ingredient list is ", ingredientList);
+        //     if (loading) {
+        //         setLoading(false);
+        //       }
+        //     });
+            
+        // } catch (e) {
+        // console.log(e);
+        // }
     };
 
     const settingPantryTypeList = () => {
@@ -57,7 +66,7 @@ const PantryTempName = () => {
     }
 
     useEffect(() => {
-        fetchIngredientsList();         
+        fetchIngredientsList();
       }, []);
 
     return (

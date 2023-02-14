@@ -59,7 +59,7 @@ const RecipeCard = ({item, onDelete, onPress}) => {
     // }
     const ingredients = [];
     item.Ingredients.map((ingredient) => {ingredients.push({"name" : ingredient})});
-    console.log(ingredients);
+    //console.log(ingredients);
   //const listItems = item.Ingredients.map((ingredients) => <li><Text>{ingredients}</Text></li>);
   return (
     <Card key={item.name}>
@@ -76,7 +76,7 @@ const RecipeCard = ({item, onDelete, onPress}) => {
                 {item.name} ({item.hindi_name})
             </RecipeName>
           </TouchableOpacity>
-          <CookTime>Cooking Time  : {item.cooking_time}</CookTime>
+          <CookTime>Cooking Time  : {item.cook_time}</CookTime>
           <CookTime>Preparation Time : {item.prep_time}</CookTime>
         </RecipeInfoText>
       </RecipeInfo>
@@ -88,7 +88,7 @@ const RecipeCard = ({item, onDelete, onPress}) => {
         <FlatList
             data={ingredients}  
             renderItem={(item) => {
-                console.log("The ingredient is : ", item.item.name);
+                //console.log("The ingredient is : ", item.item.name);
                 return (
                 <RecipeInfoText>
                     <IngredientItems>{`\u2022 ${item.item.name}`}</IngredientItems>

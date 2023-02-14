@@ -43,10 +43,9 @@ import { PantryContext } from '../../navigation/PantrySharedData.android.';
 const PantryCard = ({item}) => {
     const { pantryType, setPantryType } = useContext(PantryContext);
     const handlePress = () => {
-        console.log(pantryType);
+        console.log("the pantry type is :", pantryType);
         setPantryType(item);
       };
-    
     // {
         
     //     recipe {
@@ -69,8 +68,7 @@ const PantryCard = ({item}) => {
       <PantryCardCategoryInfo>
         <RecipeImg
           source={{
-            uri: item.img_url
-              ? item.img_url : 'https://lh5.googleusercontent.com/-b0PKyNuQv5s/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuclxAM4M1SCBGAO7Rp-QP6zgBEUkOQ/s96-c/photo.jpg',
+            uri: 'https://lh5.googleusercontent.com/-b0PKyNuQv5s/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuclxAM4M1SCBGAO7Rp-QP6zgBEUkOQ/s96-c/photo.jpg',
           }}
         />
         <RecipeInfoText>

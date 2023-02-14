@@ -12,6 +12,7 @@ import SearchButton from '../components/SearchButton';
 import RecipeCard from '../components/Recipe/RecipeCard';
 import { RecipeRecommendationFromPantry } from '../components/Recipe/RecipeRecommendation';
 import { Divider } from '../styles/FeedStyles';
+import { recipe_details_list } from '../utils/RecipeDetailsFile';
 const RecipeScreen = ({navigation}) => {
     const [recipeDetails, setRecipeDetails] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -20,7 +21,7 @@ const RecipeScreen = ({navigation}) => {
         let recipeList = [];
         await firestore()
             .collection('recipe')
-            .orderBy('cooking_time', 'asc')
+            .orderBy('cook_time', 'asc')
             .get()
             .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
@@ -28,16 +29,16 @@ const RecipeScreen = ({navigation}) => {
                 name,
                 hindi_name,
                 img_url,
-                category,
-                cooking_time,
+                cuisine,
+                cook_time,
                 prep_time,
-                Ingredients,
-                meal_type
+                ingredients,
+                course
                 } = doc.data();
                 recipeList.push(abc);
             });
 
-            console.log('Total Posts: ', recipeList[0].Ingredients);
+            console.log('Total Posts: ', recipeList[0].ingredients);
             setRecipeDetails(recipeList);
             if (loading) {
                 setLoading(false);
@@ -48,11 +49,14 @@ const RecipeScreen = ({navigation}) => {
         console.log(e);
         }
     };
-      
-  const [recommendFrom, setRecommendFrom] = useState('Pantry');
 
   useEffect(() => {
-    fetchRecipeDetails();
+    if(recipeDetails == null){
+        setRecipeDetails(recipe_details_list);
+        fetchRecipeDetails();
+    } else {
+        setLoading(false);
+    }
   }, []);
 
 

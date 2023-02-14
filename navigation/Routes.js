@@ -5,6 +5,7 @@ import {AuthContext} from './AuthProvider';
 
 import AuthStack from './AuthStack';
 import AppStack from './AppStack';
+import { PantryProvider } from './PantrySharedData.android.';
 
 const Routes = () => {
   const {user, setUser} = useContext(AuthContext);
@@ -24,7 +25,10 @@ const Routes = () => {
 
   return (
     <NavigationContainer>
-      {user ? <AppStack /> : <AuthStack />}
+      {user ? <PantryProvider>
+                 <AppStack />
+              </PantryProvider> 
+            : <AuthStack />}
     </NavigationContainer>
   );
 };

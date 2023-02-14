@@ -1,4 +1,5 @@
 import React, { createContext, useState } from 'react';
+import { ingredient_details } from '../utils/IngredientDetailsFile';
 
 // create a context
 export const PantryContext = createContext();

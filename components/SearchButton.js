@@ -2,7 +2,7 @@ import React, {useState, useEffect, useRef} from 'react';
 import {View, TextInput, Text, StyleSheet, TouchableOpacity, FlatList, Image} from 'react-native';
 import {windowHeight, windowWidth} from '../utils/Dimentions';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { ingredients } from '../utils/Vegetable';
+import { ingredients } from '../utils/RecipeDetailsFile';
 import { useDetectClickOutside } from 'react-detect-click-outside';
 
 const SearchButton = () => {
