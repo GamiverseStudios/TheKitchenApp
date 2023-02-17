@@ -13,9 +13,10 @@ export const Card = styled.TouchableOpacity`
     elevation: 10;
     margin-left: 5px;
     margin-right: 5px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     border-radius: 10px;
-    shadowColor: #52006A,  
+    shadowColor: #52006A;
+    padding-bottom: 10px;  
 `;
 
 export const PantryCategoryCard = styled.TouchableOpacity`
@@ -68,6 +69,7 @@ export const RecipeInfoText = styled.View`
     flex-direction: column;
     justify-content: center;
     margin-left: 10px;
+    margin-right: 50px;
 `;
 
 export const UserName = styled.Text`
@@ -80,6 +82,7 @@ export const RecipeName = styled.Text`
     font-size: 14px;
     font-weight: bold;
     font-family: 'Lato-Regular';
+    color: black;
 `;
 
 export const PostTime = styled.Text`
@@ -92,6 +95,7 @@ export const CookTime = styled.Text`
     font-size: 12px;
     font-family: 'Lato-Regular';
     color: #666;
+    color: black;
 `;
 
 export const IngredientTitle = styled.Text`
@@ -99,12 +103,14 @@ font-size: 16px;
 font-weight: bold;
 font-family: 'Lato-Regular';
 padding-bottom: 4px;
+color: black;
 `;
 
 export const IngredientItems = styled.Text`
 font-size: 14px;
 font-family: 'Lato-Regular';
 color: #666;
+color: black;
 `;
 
 export const PostText = styled.Text`
@@ -152,6 +158,7 @@ export const PlanningButton = styled.TouchableOpacity`
     background-color: #ccc;
     border-radius: 5px;
     margin: 2px;
+    flex : 1;
 `;
 
 export const Interaction = styled.TouchableOpacity`

@@ -75,7 +75,7 @@ export const AuthProvider = ({children}) => {
             console.log({error});
           }
         },
-        register: async (email, password) => {
+        register: async (email, password, username) => {
           try {
             await auth().createUserWithEmailAndPassword(email, password)
             .then(() => {
@@ -83,8 +83,7 @@ export const AuthProvider = ({children}) => {
               //with the appropriate details.
               firestore().collection('users').doc(auth().currentUser.uid)
               .set({
-                  fname: '',
-                  lname: '',
+                  username: username,
                   email: email,
                   createdAt: firestore.Timestamp.fromDate(new Date()),
                   userImg: null,

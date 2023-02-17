@@ -64,7 +64,7 @@ const RecipeScreen = ({navigation}) => {
 
   return (
     <View style={{alignItems:'center', backgroundColor: '#fff',padding: 20,}}>
-        <Text style={{marginTop: 10, fontSize: 30, fontWeight: 'bold'}}> What should I cook Today? </Text>
+        <Text style={{marginTop: 10, fontSize: 30, fontWeight: 'bold', color: 'red'}}> What should I cook Today? </Text>
         <View>
             <RecipeRecommendationFromPantry recipeDetails={recipeDetails} loading = {loading} />
          </View>

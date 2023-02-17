@@ -97,7 +97,6 @@ const RecipeCard = ({item, onDelete, onPress}) => {
             }}
         />
       </RecipeInfoText>
-      <Divider />
             {/* TODO : Add fucntions to show options to add to breakfast or lunch or snacks or dinner on clicking this card*/}
     </Card>
   );

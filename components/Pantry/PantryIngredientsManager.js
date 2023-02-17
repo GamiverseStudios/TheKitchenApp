@@ -2,6 +2,7 @@ import { PantryContext } from "../../navigation/PantrySharedData.android.";
 import { useCallback, useContext, useState } from "react";
 import Alert, {FlatList,View, Text, TouchableOpacity} from 'react-native';
 import PantryCard from "./PantryCard";
+import SearchButton from "../SearchButton";
 
 const PantryIngredientsManager = () => {
     const {pantryType, setPantryType, pantryTypeList, setPantryTypeList, ingredientList, setIngredientList} = useContext(PantryContext);
@@ -26,9 +27,11 @@ const PantryIngredientsManager = () => {
       }
     
       return (<View>
+        <SearchButton />
         {ingredientList.length == 0 ? (<View></View>) : (
-            <View style={{margin : 30}}>
+            <View style={{padding : 10, margin : 15, marginBottom : 310, marginTop : 5, elevation : 1, borderBottomColor: 'black'}}>
             <FlatList
+                numColumns={2}
                 data={pantryTypeIngredientList}
                 keyExtractor={item=>item.name}
                     renderItem={useCallback(({item}) => {
@@ -38,7 +41,7 @@ const PantryIngredientsManager = () => {
                             style = {{borderColor: 'black', borderWidth: 1, padding : 5, borderRadius : 10, backgroundColor : item.isSelected ? '#FDD4D7' : 'white'}}
                             onPress = {() => onSelect(item.name)}> 
                             <View>
-                                <Text>{item.name}</Text>
+                                <Text style={{color : 'black'}}>{item.name}</Text>
                             </View>
                         </TouchableOpacity>
                    </View>)

@@ -1,7 +1,7 @@
 import firestore from '@react-native-firebase/firestore';
 import { Button } from 'react-native-paper';
 import { View } from 'react-native';
-import { ingredients } from '../utils/RecipeDetailsFile';
+import { ingredients } from '../utils/Vegetable';
 import { ingredient_details } from '../utils/IngredientDetailsFile';
 import FormButton from './FormButton';
 

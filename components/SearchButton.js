@@ -1,15 +1,15 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, useContext} from 'react';
 import {View, TextInput, Text, StyleSheet, TouchableOpacity, FlatList, Image} from 'react-native';
 import {windowHeight, windowWidth} from '../utils/Dimentions';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { ingredients } from '../utils/RecipeDetailsFile';
 import { useDetectClickOutside } from 'react-detect-click-outside';
+import { PantryContext } from '../navigation/PantrySharedData.android.';
 
 const SearchButton = () => {
+    const {pantryType, setPantryType, pantryTypeList, setPantryTypeList, ingredientList, setIngredientList} = useContext(PantryContext);
     const [search, setSearch] = useState('');
     const [clicked, setClicked] = useState(false);
-    const [data, setData] = useState(ingredients);
-    const [selectedIngredients, setSelectedIngredients] = useState([]);
+    const [data, setData] = useState(ingredientList);
     const searchRef = useRef();
     const onSearch = search => {
       if (search !== '') {
@@ -18,7 +18,7 @@ const SearchButton = () => {
         });
         setData(tempData);
       } else {
-        setData(ingredients);
+        setData(ingredientList);
       }
     };
 
@@ -33,6 +33,7 @@ const SearchButton = () => {
           width: 0.75*windowWidth,
           backgroundColor: '#fff',
           borderRadius: 10,
+          color: 'black',
         }}>
         <TextInput
           placeholder="Search.."
@@ -51,12 +52,12 @@ const SearchButton = () => {
             borderRadius: 7,
             marginTop: 20,
             paddingLeft: 20,
+            color: 'black',
           }}
         />
 
         <FlatList
           data={data}
-          extraData = {selectedIngredients}
           renderItem={({item}) => {
             return (
               <TouchableOpacity
@@ -67,19 +68,17 @@ const SearchButton = () => {
                   justifyContent: 'center',
                   borderBottomWidth: 0.5,
                   borderColor: '#8e8e8e',
+                  backgroundColor : item.isSelected ? '#FDD4D7' : 'white',
+                  borderRadius : 5, 
+                  margin : 3
                 }}
                 onPress={() => {
-                  if(selectedIngredients.filter(ingredient => ingredient.name === item.name).length === 0) {
-                      const ing = [...selectedIngredients];
-                      ing.push(item);
-                      setSelectedIngredients(ing);
-                  }
+                  item.isSelected = !item.isSelected;
                   onSearch('');
                   setSearch('');
                 }}>
                 <View style = {{flexDirection: 'row', padding: 10}}>
-                  <Image source={{uri: item.url}} style={{width: 40, height: 40, paddingRight: 50, resizeMode: 'cover', borderRadius: 5}}></Image>
-                  <Text style={{fontWeight: '600', paddingLeft: 60, alignSelf: 'center'}}>{item.name} ({item.hindiName})</Text>
+                  <Text style={{fontWeight: '600', paddingLeft: 60, alignSelf: 'center', color: 'black'}}>{item.name} ({item.hindi_name})</Text>
                 </View>
               </TouchableOpacity>
             );
@@ -90,47 +89,7 @@ const SearchButton = () => {
    }
 
   return (
-    <View style={{flex: 1}}>
-      <View
-          style={{
-            marginTop: 20,
-            alignSelf: 'center',
-            width: 0.75*windowWidth,
-            backgroundColor: '#fff',
-            borderRadius: 10,
-            paddingBottom: 15,
-          }}>
-
-      <FlatList
-            data={selectedIngredients}
-            contentContainerStyle={{ flexDirection: "row", flexWrap:'wrap' }}
-            renderItem={({item}) => {
-                console.log(selectedIngredients);
-              return (
-                <View style = {{
-                    flexDirection: 'row',
-                    elevation: 5,
-                    alignSelf: 'center',
-                    backgroundColor: '#fff',
-                    borderRadius: 10,
-                    marginRight: 9,
-                    marginBottom: 9}}>
-                    <Image source={{uri: item.url}} style={{width: 30, height: 30}}></Image>
-                    <Text style = {{justifyContent: 'center', paddingLeft: 9}}>{item.name}</Text>
-                    <TouchableOpacity
-                        onPress={() => {
-                            const ingredients1 = selectedIngredients.filter(ingredient => ingredient.name !== item.name)
-                            setSelectedIngredients(ingredients1);
-                        }}>
-                        <View style={styles.iconWrapper}>
-                            <AntDesign name='close' style={styles.icon} size={15} />
-                        </View> 
-                    </TouchableOpacity>
-                </View>
-              );
-            }}
-          />    
-      </View>
+    <View>
       <TouchableOpacity
         style={{
           width: 0.9 * windowWidth,
@@ -146,9 +105,9 @@ const SearchButton = () => {
           paddingRight: 15,
           shadowOpacity: '50%',
           shadowColor: '#8e8e8e',
+          marginTop: 10
         }}
         onPress={() => {
-          // console.log(selectedIngredients);
           setClicked(!clicked);
         }}>
         <View style={styles.iconWrapper}>
@@ -186,5 +145,6 @@ const styles = StyleSheet.create({
       fontSize: 18,
       fontWeight: 'bold',
       fontFamily: 'Lato-Regular',
+      color: 'black',
     },
   });

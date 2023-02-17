@@ -7,20 +7,30 @@ import {AuthContext} from '../navigation/AuthProvider';
 
 const SignupScreen = ({navigation}) => {
   const [email, setEmail] = useState();
+  const [username, setUserName] = useState();
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
 
-  const {register} = useContext(AuthContext);
+  const {register, googleSignUp} = useContext(AuthContext);
 
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Create an account</Text>
 
       <FormInput
+        labelValue={username}
+        onChangeText={(username) => setUserName(username)}
+        placeholderText="UserName"
+        iconType="user"
+        autoCapitalize="none"
+        autoCorrect={false}
+      />
+
+      <FormInput
         labelValue={email}
         onChangeText={(userEmail) => setEmail(userEmail)}
         placeholderText="Email"
-        iconType="user"
+        iconType="mail"
         keyboardType="email-address"
         autoCapitalize="none"
         autoCorrect={false}
@@ -44,7 +54,7 @@ const SignupScreen = ({navigation}) => {
 
       <FormButton
         buttonTitle="Sign Up"
-        onPress={() => register(email, password)}
+        onPress={() => register(email, password, username)}
       />
 
       <View style={styles.textPrivate}>
@@ -65,19 +75,11 @@ const SignupScreen = ({navigation}) => {
       {Platform.OS === 'android' ? (
         <View>
           <SocialButton
-            buttonTitle="Sign Up with Facebook"
-            btnType="facebook"
-            color="#4867aa"
-            backgroundColor="#e6eaf4"
-            onPress={() => {}}
-          />
-    
-          <SocialButton
             buttonTitle="Sign Up with Google"
             btnType="google"
             color="#de4d41"
             backgroundColor="#f5e7ea"
-            onPress={() => {}}
+            onPress={() => {googleSignUp()}}
           />
         </View>
       ) : null}
@@ -100,12 +102,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
+    paddingTop: 0
   },
   text: {
     fontFamily: 'Kufam-SemiBoldItalic',
     fontSize: 28,
     marginBottom: 10,
-    color: '#051d5f',
+    color: '#de4d41',
   },
   navButton: {
     marginTop: 15,
