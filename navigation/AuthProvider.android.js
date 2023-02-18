@@ -3,6 +3,8 @@ import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import { GoogleSignin } from '@react-native-community/google-signin';
 import { LoginManager, AccessToken } from 'react-native-fbsdk';
+import { firebase } from '@react-native-firebase/auth';
+import { Alert } from 'react-native';
 
 export const AuthContext = createContext();
 
@@ -100,6 +102,22 @@ export const AuthProvider = ({children}) => {
           } catch (e) {
             console.log(e);
           }
+        },
+        resetPassword: async(email) => {
+            try {
+              await auth().sendPasswordResetEmail(email)
+              .then(() => {
+                Alert.alert('Successful','Password reset email sent successfully!',[], { cancelable: true });
+                console.log('Password reset email sent successfully!');
+              })
+              .catch((error) => {
+                Alert.alert('Failed', 'User with the provided emailId does not exist',[], { cancelable: true });
+                console.error(error);
+              });
+            } catch (e) {
+              Alert.alert('Failed','Error while sending reset email. Please try again !',[], { cancelable: true });
+              console.log(e);
+            }
         },
         logout: async () => {
           try {
