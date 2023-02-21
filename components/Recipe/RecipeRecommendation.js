@@ -8,12 +8,13 @@ import { FlatList } from "react-native-gesture-handler";
 import { PlanningButton } from "../../styles/FeedStyles";
 import { recipe_details_list } from "../../utils/RecipeDetailsFile";
 import { unique_category_type } from "../../utils/IngredientDetailsFile";
+import RecipeFilter from "./RecipeFilter";
 
 export const RecipeRecommendationFromPantry = () => {
-    const {pantryType, setPantryType, pantryTypeList, setPantryTypeList, ingredientList, setIngredientList} = useContext(PantryContext);
+    const {pantryType, setPantryType, pantryTypeList, setPantryTypeList, ingredientList, setIngredientList, filteredRecipeList, setFilteredRecipeList} = useContext(PantryContext);
     const [recipeDetails, setRecipeDetails] = useState([]);
     const selectedIngredients = [];
-    const [recommendedRecipes, setRecommendedRecipes] = useState([]);
+    const [isFilterButtonClicked, setIsFilterButtonClicked] = useState(false);
     const loadFromPantry = () => {
         let suggestions = [];
 
@@ -23,20 +24,21 @@ export const RecipeRecommendationFromPantry = () => {
             }
         });
         recipeDetails.map((recipe) => {
-            // console.log("current Recipe : ", recipe);
-            if(checkIfIngredientsAvailable(recipe.Ingredients) && !recommendedRecipes.includes(recipe)) {
+             console.log("current Recipe : ", recipe);
+            if(checkIfIngredientsAvailable(recipe.Ingredients) && !filteredRecipeList.includes(recipe)) {
                 suggestions.push(recipe);
+
             }
         });
 
         //TODO : This is getting filled a s empty list after the first load and leading to the toggle behaviour
-        setRecommendedRecipes(suggestions);
+        setFilteredRecipeList(suggestions);
     }
 
     const shuffleArray = () => {
         let abc = recipeDetails.sort(() => Math.random() - 0.5);
-        setRecommendedRecipes(abc);
-      }
+        setFilteredRecipeList(abc);
+    }
 
     useEffect(() => {
         fetchRecipeDetails();
@@ -68,6 +70,7 @@ export const RecipeRecommendationFromPantry = () => {
     const fetchRecipeDetails = async () => {
         recipe_details_list.forEach((item) => {
             item.Ingredients = item.final_ingredients_1.split(',');
+            item.shouldShow = true;
             recipeDetails.push(item);
         })
         // try {
@@ -100,36 +103,83 @@ export const RecipeRecommendationFromPantry = () => {
 
 
     return (
-            <View>
-            <SafeAreaView style={{backgroundColor: '#fff', zIndex: 0, flexDirection : "row", elevation : 5,}}>
-            
-                <TouchableOpacity style={{flex : 1, borderRadius: 3, backgroundColor :  '#f2545b', justifyContent: 'center', marginRight : 10}} 
+        <View style={{flex: 1}}>
+        <View style={{flex : 0.5, flexDirection: "row"}}>
+                <TouchableOpacity style={{flexborderRadius: 3, backgroundColor :  '#f2545b', justifyContent: 'center', marginRight : 10}} 
                                 onPress={() => loadFromPantry()}>
-                    <Text style={{color:'#f3f7f0', fontSize: 16, alignSelf : "center"}}>Recommend using Pantry</Text>
+                    <Text style={{flex : 1, color:'#f3f7f0', fontSize: 16, alignSelf : "center"}}>Recommend using Pantry</Text>
                 </TouchableOpacity>
                 
-                <TouchableOpacity style={{flex : 1, backgroundColor :  '#f3f7f0', justifyContent: 'center'}}  
+                <TouchableOpacity style={{ backgroundColor :  '#f3f7f0', justifyContent: 'center'}}  
                                 onPress={() => shuffleArray()}>
-                    <Text style={{color:'#f2545b', fontSize: 16, alignSelf : "center"}}>Random Recommendation</Text>
+                    <Text style={{flex : 1,color:'#f2545b', fontSize: 16, alignSelf : "center"}}>Random Recommendation</Text>
                 </TouchableOpacity>
-                </SafeAreaView>
-                <View style={{marginTop : 20, marginBottom : 350, borderColor : 'grey', elevation : 1}}>
-                    <Text style = {{marginBottom : 10, color : 'black'}}> Filter and Sorting buttons will be added here </Text>
-                    {
-                        recommendedRecipes.length === 0 ? 
+        </View>
+        <View style={{flex : 15, marginTop : 5}}> 
+             <TouchableOpacity style={{flexborderRadius: 3, backgroundColor :  '#f2545b', justifyContent: 'center'}} onPress={() => setIsFilterButtonClicked(!isFilterButtonClicked)}>
+                     <Text style={{fontSize : 20}}>Filter</Text>
+             </TouchableOpacity>
+                {
+                    
+                    isFilterButtonClicked ? <RecipeFilter /> : null
+                }
+            <View style={{flex : 1,marginTop : 5}}>
+                     {
+                        filteredRecipeList.length === 0 ? 
                             (<View>
                                 <Text style={{color: 'black', fontSize : 13}}>Please add more ingredients for better suggestions</Text>
                             </View>) : 
                         (<FlatList 
+                        style = {{flex:1}}
                         scrollEnabled = {true}
-                        data={recommendedRecipes}
+                        data={filteredRecipeList}
+                        key={filteredRecipeList.name}
                         renderItem={({item}) => {
-                            return( <RecipeCard item={item} />)
-                    }}/>)
-
+                             return ( item.shouldShow ? <RecipeCard item={item} /> : null)
+                        }}/>)
                     }
-                </View>   
-                </View>          
+            </View>   
+        </View>
+ 
+        </View>
+            // <View>
+            // <View>
+            // <SafeAreaView style={{backgroundColor: '#fff', zIndex: 0, flexDirection : "row", elevation : 5,}}>
             
+            //     <TouchableOpacity style={{flex : 1, borderRadius: 3, backgroundColor :  '#f2545b', justifyContent: 'center', marginRight : 10}} 
+            //                     onPress={() => loadFromPantry()}>
+            //         <Text style={{color:'#f3f7f0', fontSize: 16, alignSelf : "center"}}>Recommend using Pantry</Text>
+            //     </TouchableOpacity>
+                
+            //     <TouchableOpacity style={{flex : 1, backgroundColor :  '#f3f7f0', justifyContent: 'center'}}  
+            //                     onPress={() => shuffleArray()}>
+            //         <Text style={{color:'#f2545b', fontSize: 16, alignSelf : "center"}}>Random Recommendation</Text>
+            //     </TouchableOpacity>
+            // </SafeAreaView>
+            // <SafeAreaView style={{borderRadius: 3}}>
+            //     <TouchableOpacity style={{flex:1}} onPress={() => setIsFilterButtonClicked(!isFilterButtonClicked)}>
+            //         <Text>Filter</Text>
+            //     </TouchableOpacity>
+            //     {
+            //         isFilterButtonClicked ? <RecipeFilter /> : null
+            //     }
+            // </SafeAreaView>
+            // </View>
+            // <View>
+            //         {
+            //             recommendedRecipes.length === 0 ? 
+            //                 (<View>
+            //                     <Text style={{color: 'black', fontSize : 13}}>Please add more ingredients for better suggestions</Text>
+            //                 </View>) : 
+            //             (<FlatList 
+            //             style = {{flex:1}}
+            //             scrollEnabled = {true}
+            //             data={recommendedRecipes}
+            //             renderItem={({item}) => {
+            //                 return( <RecipeCard item={item} />)
+            //         }}/>)
+            //         }
+            // </View>          
+            // </View>
     );
 };

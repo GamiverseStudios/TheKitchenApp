@@ -115,7 +115,7 @@ export const AuthProvider = ({children}) => {
                 console.error(error);
               });
             } catch (e) {
-              Alert.alert('Failed','Error while sending reset email. Please try again !',[], { cancelable: true });
+              Alert.alert('Failed', 'Error while sending reset email. Please try again !',[], { cancelable: true });
               console.log(e);
             }
         },

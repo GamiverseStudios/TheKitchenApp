@@ -1,4 +1,4 @@
-export const unique_category_type = ['vegetables', 'breads & dairy products', 'lentils', 'fruits', 'grains'];
+export const unique_category_type = ['vegetables', 'lentils', 'fruits', 'grains', 'breads & dairy products', 'meat'];
 
 export const ingredient_details = 
 [
