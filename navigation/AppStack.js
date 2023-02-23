@@ -75,19 +75,18 @@ const RecipeStack = ({navigation}) => (
       name="ShoppingListScreen"
       component={ShoppingListScreen}
       options={{
-        title: '',
+        title: 'The Kitchen Assistant',
         headerTitleAlign: 'center',
+        headerTitleStyle: {
+          color: '#f3f7f0',
+          fontFamily: 'Kufam-SemiBoldItalic',
+          fontSize: 25,
+        },
         headerStyle: {
-          backgroundColor: '#fff',
+          backgroundColor: '#f2545b',
           shadowColor: '#fff',
           elevation: 0,
         },
-        headerBackTitleVisible: false,
-        headerBackImage: () => (
-          <View style={{marginLeft: 15}}>
-            <Ionicons name="arrow-back" size={25} color="#2e64e5" />
-          </View>
-        ),
       }}
     />
   </Stack.Navigator>
@@ -120,23 +119,22 @@ const PlanningStack = ({navigation}) => (
         }}
         />
         <Stack.Screen
-        name="ShoppingListScreen"
-        component={ShoppingListScreen}
-        options={{
-            title: '',
-            headerTitleAlign: 'center',
-            headerStyle: {
-            backgroundColor: '#fff',
+          name="ShoppingListScreen"
+          component={ShoppingListScreen}
+          options={{
+          title: 'The Kitchen Assistant',
+          headerTitleAlign: 'center',
+          headerTitleStyle: {
+            color: '#f3f7f0',
+            fontFamily: 'Kufam-SemiBoldItalic',
+            fontSize: 25,
+          },
+          headerStyle: {
+            backgroundColor: '#f2545b',
             shadowColor: '#fff',
             elevation: 0,
-            },
-            headerBackTitleVisible: false,
-            headerBackImage: () => (
-            <View style={{marginLeft: 15}}>
-                <Ionicons name="arrow-back" size={25} color="#2e64e5" />
-            </View>
-            ),
-        }}
+          },
+          }}
         />
     </Stack.Navigator>
   );
@@ -147,19 +145,18 @@ const ShoppingListStack = ({navigation}) => (
         name="ShoppingListScreen"
         component={ShoppingListScreen}
         options={{
-            title: '',
-            headerTitleAlign: 'center',
-            headerStyle: {
-            backgroundColor: '#fff',
-            shadowColor: '#fff',
-            elevation: 0,
-            },
-            headerBackTitleVisible: false,
-            headerBackImage: () => (
-            <View style={{marginLeft: 15}}>
-                <Ionicons name="arrow-back" size={25} color="#2e64e5" />
-            </View>
-            ),
+        title: 'The Kitchen Assistant',
+        headerTitleAlign: 'center',
+        headerTitleStyle: {
+          color: '#f3f7f0',
+          fontFamily: 'Kufam-SemiBoldItalic',
+          fontSize: 25,
+        },
+        headerStyle: {
+          backgroundColor: '#f2545b',
+          shadowColor: '#fff',
+          elevation: 0,
+        },
         }}
         />
     </Stack.Navigator>
@@ -209,9 +206,6 @@ const AppStack = () => {
         activeTintColor: '#f2545b',
         style: {
             position: 'absolute',
-            bottom: 20,
-            left:20,
-            right : 20,
             elevation :5,
             borderRadius : 15,
             backgroundColor : '#ffffff',

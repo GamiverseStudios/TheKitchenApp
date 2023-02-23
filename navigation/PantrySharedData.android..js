@@ -16,9 +16,10 @@ export const PantryProvider = ({ children }) => {
   });
   const [sortRecipe, setSortRecipe] = useState('prep-time-low');
   const [filteredRecipeList, setFilteredRecipeList] = useState([]);
+  const [isRecipeFilterApplied, setIsRecipeFilteredApplied] = useState(true);
 
   return (
-    <PantryContext.Provider value={{ pantryType, setPantryType, pantryTypeList, setPantryTypeList, ingredientList, setIngredientList, recipeFilters, setRecipeFilters, sortRecipe, setSortRecipe, filteredRecipeList, setFilteredRecipeList }}>
+    <PantryContext.Provider value={{ pantryType, setPantryType, pantryTypeList, setPantryTypeList, ingredientList, setIngredientList, recipeFilters, setRecipeFilters, sortRecipe, setSortRecipe, filteredRecipeList, setFilteredRecipeList, isRecipeFilterApplied, setIsRecipeFilteredApplied }}>
       {children}
     </PantryContext.Provider>
   );

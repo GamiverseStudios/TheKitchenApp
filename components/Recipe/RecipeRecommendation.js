@@ -11,7 +11,7 @@ import { unique_category_type } from "../../utils/IngredientDetailsFile";
 import RecipeFilter from "./RecipeFilter";
 
 export const RecipeRecommendationFromPantry = () => {
-    const {pantryType, setPantryType, pantryTypeList, setPantryTypeList, ingredientList, setIngredientList, filteredRecipeList, setFilteredRecipeList} = useContext(PantryContext);
+    const {recipeFilters, pantryType, setPantryType, pantryTypeList, setPantryTypeList, ingredientList, setIngredientList, filteredRecipeList, setFilteredRecipeList, isRecipeFilterApplied, setIsRecipeFilteredApplied} = useContext(PantryContext);
     const [recipeDetails, setRecipeDetails] = useState([]);
     const selectedIngredients = [];
     const loadFromPantry = () => {
@@ -121,10 +121,10 @@ export const RecipeRecommendationFromPantry = () => {
                                 <Text style={{color: 'black', fontSize : 13}}>Please add more ingredients for better suggestions</Text>
                             </View>) : 
                         (<FlatList 
-                        style = {{flex:1, marginBottom : 170}}
+                        style = {{marginBottom : 140, elevation : 2, borderColor : 'black'}}
                         scrollEnabled = {true}
                         data={filteredRecipeList}
-                        key={filteredRecipeList.name}
+                        extraData={isRecipeFilterApplied}
                         renderItem={({item}) => {
                              return ( item.shouldShow ? <RecipeCard item={item} /> : null)
                         }}/>)

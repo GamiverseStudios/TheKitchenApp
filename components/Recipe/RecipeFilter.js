@@ -7,7 +7,7 @@ import { recipe_details_list } from "../../utils/RecipeDetailsFile";
 
 export const RecipeFilter = () => {
 
-const {recipeFilters, setRecipeFilters, sortRecipe, setSortRecipe, filteredRecipeList, setFilteredRecipeList} = useContext(PantryContext);
+const {recipeFilters, setRecipeFilters, sortRecipe, setSortRecipe, filteredRecipeList, setFilteredRecipeList, isRecipeFilterApplied, setIsRecipeFilteredApplied} = useContext(PantryContext);
 const [isFilterButtonClicked, setIsFilterButtonClicked] = useState(false);
 const [dietOptions, setDietOptions] = useState([]);
 const [courseOptions, setCourseOptions] = useState([]);
@@ -60,10 +60,6 @@ const getFilterOptions = () => {
 
 
 const applyFilters = () => {
-    recipeFilters.diet = dietOptions;
-    recipeFilters.course = courseOptions;
-    recipeFilters.cuisine = cuisineOptions;
-
     let selectedDietOptions = [];
     dietOptions.map((item) => {
         if(item.isSelected === true) {
@@ -103,12 +99,16 @@ const applyFilters = () => {
         })
     }
 
-    filteredRecipeList.map((item) => {
+    recipeFilters.diet = selectedDietOptions;
+    recipeFilters.course = selectedCourseOptions;
+    recipeFilters.cuisine = selectedCuisineOptions;
 
+    setIsRecipeFilteredApplied(!isRecipeFilterApplied);
+
+    filteredRecipeList.map((item) => {
         if(selectedDietOptions.find((x) => x === item.diet) && selectedCuisineOptions.find((x)=> x === item.cuisine) && selectedCourseOptions.find((x) => x === item.course)) {
             item.shouldShow = true;
         } else {
-            
             item.shouldShow = false;
         }
     });
@@ -130,9 +130,8 @@ return (
     isFilterButtonClicked ? 
     (<View style={styles.filterWindow}>
          <TouchableOpacity style={{flexborderRadius: 3, backgroundColor :  '#f2545b', justifyContent: "flex-start", flexDirection:"row"}} onPress={() => setIsFilterButtonClicked(!isFilterButtonClicked)}>
-
-        <Text style={{fontSize : 20}}>Filter</Text>
-    </TouchableOpacity> 
+            <Text style={{fontSize : 20}}>Filter</Text>
+        </TouchableOpacity> 
     <View style ={styles.content}>
         <View style={styles.menuColumn}>
         {menuItems.map(
@@ -206,9 +205,9 @@ return (
           }
         </View>
     </View>
-    <View style ={{flex : 1 }}>
+    <View style={{padding: 10}}>
                 <TouchableOpacity 
-                        style = {{borderColor: 'black', borderWidth: 1, padding : 5, borderRadius : 10, backgroundColor : 'white'}}
+                        style = {{borderColor: 'black', borderWidth: 1, padding : 5, borderRadius : 10, backgroundColor : '#FDD4D7'}}
                         onPress = {() => applyFilters()}> 
                         <View>
                             <Text style={{color : 'black'}}>Apply</Text>
@@ -239,7 +238,7 @@ const styles = StyleSheet.create ({
         flex: .4,
         flexDirection: 'column',
         borderRightColor: '#F8F8FF',
-        borderRightWidth: 1,
+        borderRightWidth: 2,
       },
       menuItem: {
         // flex: 1,
@@ -273,7 +272,10 @@ const styles = StyleSheet.create ({
 
       filterWindow: {
         flex: 8,
-        padding : 5
+        marginBottom: 60,
+        borderColor : 'black',
+        borderWidth : 1
+        
       }
 
 });

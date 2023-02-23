@@ -10,7 +10,7 @@ import PantryIngredientsManager from "./PantryIngredientsManager";
 import { ingredient_details, unique_category_type } from "../../utils/IngredientDetailsFile";
 
 const PantryTempName = () => {
-    const {pantryType, setPantryType, pantryTypeList, setPantryTypeList, ingredientList, setIngredientList} = useContext(PantryContext);
+    const {pantryType, setPantryType, pantryTypeList, setPantryTypeList, ingredientList, setIngredientList, isRecipeFilterApplied, setIsRecipeFilteredApplied} = useContext(PantryContext);
     const [loading, setLoading] = useState(true);
 
     const fetchIngredientsList = async () => {
@@ -92,7 +92,7 @@ const PantryTempName = () => {
                             }}/>
                             </SafeAreaView>
                             <PantryIngredientsManager/>
-                            </View>
+                        </View>
                       )
                 }
                 
