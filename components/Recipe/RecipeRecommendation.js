@@ -14,7 +14,6 @@ export const RecipeRecommendationFromPantry = () => {
     const {pantryType, setPantryType, pantryTypeList, setPantryTypeList, ingredientList, setIngredientList, filteredRecipeList, setFilteredRecipeList} = useContext(PantryContext);
     const [recipeDetails, setRecipeDetails] = useState([]);
     const selectedIngredients = [];
-    const [isFilterButtonClicked, setIsFilterButtonClicked] = useState(false);
     const loadFromPantry = () => {
         let suggestions = [];
 
@@ -24,10 +23,8 @@ export const RecipeRecommendationFromPantry = () => {
             }
         });
         recipeDetails.map((recipe) => {
-             console.log("current Recipe : ", recipe);
             if(checkIfIngredientsAvailable(recipe.Ingredients) && !filteredRecipeList.includes(recipe)) {
                 suggestions.push(recipe);
-
             }
         });
 
@@ -116,13 +113,7 @@ export const RecipeRecommendationFromPantry = () => {
                 </TouchableOpacity>
         </View>
         <View style={{flex : 15, marginTop : 5}}> 
-             <TouchableOpacity style={{flexborderRadius: 3, backgroundColor :  '#f2545b', justifyContent: 'center'}} onPress={() => setIsFilterButtonClicked(!isFilterButtonClicked)}>
-                     <Text style={{fontSize : 20}}>Filter</Text>
-             </TouchableOpacity>
-                {
-                    
-                    isFilterButtonClicked ? <RecipeFilter /> : null
-                }
+            <RecipeFilter />
             <View style={{flex : 1,marginTop : 5}}>
                      {
                         filteredRecipeList.length === 0 ? 
@@ -130,7 +121,7 @@ export const RecipeRecommendationFromPantry = () => {
                                 <Text style={{color: 'black', fontSize : 13}}>Please add more ingredients for better suggestions</Text>
                             </View>) : 
                         (<FlatList 
-                        style = {{flex:1}}
+                        style = {{flex:1, marginBottom : 170}}
                         scrollEnabled = {true}
                         data={filteredRecipeList}
                         key={filteredRecipeList.name}

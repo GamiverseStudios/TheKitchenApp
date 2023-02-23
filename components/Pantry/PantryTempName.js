@@ -17,6 +17,7 @@ const PantryTempName = () => {
 
         ingredient_details.forEach((item) => {
             item.img_url = "";
+            item.isSelected = false;
             ingredientList.push(item);
         });
 

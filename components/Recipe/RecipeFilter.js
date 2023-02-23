@@ -8,7 +8,7 @@ import { recipe_details_list } from "../../utils/RecipeDetailsFile";
 export const RecipeFilter = () => {
 
 const {recipeFilters, setRecipeFilters, sortRecipe, setSortRecipe, filteredRecipeList, setFilteredRecipeList} = useContext(PantryContext);
-
+const [isFilterButtonClicked, setIsFilterButtonClicked] = useState(false);
 const [dietOptions, setDietOptions] = useState([]);
 const [courseOptions, setCourseOptions] = useState([]);
 const [cuisineOptions, setCuisineOptions] = useState([]);
@@ -114,6 +114,7 @@ const applyFilters = () => {
     });
 
     setFilteredRecipeList(filteredRecipeList);
+    setIsFilterButtonClicked(!isFilterButtonClicked);
 
     // Filtering logic expected here
 }
@@ -123,9 +124,15 @@ useEffect(() => {
   }, []);
 
 // this holds the keys of the menuItems for the view to know which category is currently being rendered. 
-const [selectedItem, setSelectedItem] = useState('1')
+const [selectedItem, setSelectedItem] = useState('1');
+
 return (
-    <View style={styles.filterWindow}>
+    isFilterButtonClicked ? 
+    (<View style={styles.filterWindow}>
+         <TouchableOpacity style={{flexborderRadius: 3, backgroundColor :  '#f2545b', justifyContent: "flex-start", flexDirection:"row"}} onPress={() => setIsFilterButtonClicked(!isFilterButtonClicked)}>
+
+        <Text style={{fontSize : 20}}>Filter</Text>
+    </TouchableOpacity> 
     <View style ={styles.content}>
         <View style={styles.menuColumn}>
         {menuItems.map(
@@ -208,7 +215,12 @@ return (
                         </View>
             </TouchableOpacity> 
     </View>
-    </View>
+    </View>)
+    : (<View style = {{flex : 0.05}}>
+    <TouchableOpacity style={{flexborderRadius: 3, backgroundColor :  '#f2545b', justifyContent: 'center'}} onPress={() => setIsFilterButtonClicked(!isFilterButtonClicked)}>
+        <Text style={{fontSize : 20}}>Filter</Text>
+    </TouchableOpacity> 
+    </View>)
 );
 }
     

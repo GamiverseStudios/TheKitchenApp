@@ -12,9 +12,9 @@ const PantryIngredientsManager = () => {
 
     //console.log("The ingredientList is : ",ingredientList);
     ingredientList.map((item) => {
-        if (item.category == pantryType) {
+        if (item.category === pantryType && !pantryTypeIngredientList.find((x) => x.id == item.id)) {
             pantryTypeIngredientList.push(item);
-        }
+        } 
       });
     
       const onSelect = (ind) => {
@@ -33,19 +33,19 @@ const PantryIngredientsManager = () => {
             <FlatList
                 numColumns={2}
                 data={pantryTypeIngredientList}
-                keyExtractor={item=>item.name}
-                    renderItem={useCallback(({item}) => {
+                keyExtractor={item=>item.id}
+                    renderItem={({item}) => {
                     return( 
                    <View style={{flex: 1, flexDirection: "row", alignContent: 'center', padding : 3}}>
                         <TouchableOpacity 
                             style = {{borderColor: 'black', borderWidth: 1, padding : 5, borderRadius : 10, backgroundColor : item.isSelected ? '#FDD4D7' : 'white'}}
-                            onPress = {() => onSelect(item.name)}> 
+                            onPress = {() => {onSelect(item.name)}}> 
                             <View>
                                 <Text style={{color : 'black'}}>{item.name}</Text>
                             </View>
                         </TouchableOpacity>
                    </View>)
-            })} />
+            }} />
             </View>
             )
          }   

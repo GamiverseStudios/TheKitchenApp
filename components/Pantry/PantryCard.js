@@ -43,7 +43,6 @@ import { PantryContext } from '../../navigation/PantrySharedData.android.';
 const PantryCard = ({item}) => {
     const { pantryType, setPantryType } = useContext(PantryContext);
     const handlePress = () => {
-        console.log("the pantry type is :", pantryType);
         setPantryType(item);
       };
     // {
@@ -84,16 +83,3 @@ const PantryCard = ({item}) => {
 
 
 export default PantryCard;
-
-const PlanForBreakFast = () => {
-    console.log('Planned for Breakfast');
-}
-const PlanForLunch = () => {
-    console.log('Planned for Breakfast');
-}
-const PlanForDinner = () => {
-    console.log('Planned for Breakfast');
-}
-const PlanForSnacks = () => {
-    console.log('Planned for Breakfast');
-}

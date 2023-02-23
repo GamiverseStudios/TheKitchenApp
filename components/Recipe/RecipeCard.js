@@ -76,8 +76,8 @@ const RecipeCard = ({item, onDelete, onPress}) => {
                 {item.name} ({item.hindi_name})
             </RecipeName>
           </TouchableOpacity>
-          <CookTime>Cooking Time  : {item.cook_time}</CookTime>
-          <CookTime>Preparation Time : {item.prep_time}</CookTime>
+          <CookTime>Cooking Time  : {item.cook_time} mins</CookTime>
+          <CookTime>Preparation Time : {item.prep_time} mins</CookTime>
         </RecipeInfoText>
       </RecipeInfo>
       <Divider />
