@@ -60,20 +60,20 @@ const OnboardingScreen = ({navigation}) => {
           {
             backgroundColor: '#a6e4d0',
             image: <Image source={require('../assets/onboarding-img1.png')} />,
-            title: 'Connect to the World',
-            subtitle: 'A New Way To Connect With The World',
+            title: 'The Kitchen Assistant ',
+            subtitle: 'Your trusty kitchen companion',
           },
           {
             backgroundColor: '#fdeb93',
             image: <Image source={require('../assets/onboarding-img2.png')} />,
-            title: 'Share Your Favorites',
-            subtitle: 'Share Your Thoughts With Similar Kind of People',
+            title: 'Provides Recipe Suggestions',
+            subtitle: 'Simplify your cooking, Simplify your life',
           },
           {
             backgroundColor: '#e9bcbe',
             image: <Image source={require('../assets/onboarding-img3.png')} />,
-            title: 'Become The Star',
-            subtitle: "Let The Spot Light Capture You",
+            title: 'Become The Kitchen King',
+            subtitle: "Say goodbye to kitchen chaos",
           },
         ]}
       />

@@ -44,24 +44,21 @@ export const RecipeRecommendationFromPantry = () => {
 
     const checkIfIngredientsAvailable = (reqIngredients) => {
         let areAllIngredientsAvailable = true;
-        // console.log("req ingredients : ", reqIngredients);
-        // console.log("selected ingredients : ", ingredientList);
-        // console.log("Selected ingredients are : ", selectedIngredients);
+        let isAtleastOneSelectedIngredientPresent = false;
         reqIngredients.forEach((item) => {
             var it = ingredientList.find((x) => {
                 return x.name === item});
-            // console.log("it is  : ", it);
-            // console.log(item);
-            // it ? console.log(unique_category_type.indexOf(it.category)) : console.log(it);
+
+            // Checking if the element is present in ingredient list and present in categories we displayed in pantry Manager
             if(it && unique_category_type.indexOf(it.category) != -1) {
+                isAtleastOneSelectedIngredientPresent = true;
                 var findItem = selectedIngredients.find((x) => x === item);
-                // console.log("find Item is  : ", findItem);
                 if(!findItem) {
                     areAllIngredientsAvailable = false;
                 }
             }
           });
-          return areAllIngredientsAvailable;
+          return areAllIngredientsAvailable && isAtleastOneSelectedIngredientPresent;
     }
 
     const fetchRecipeDetails = async () => {
