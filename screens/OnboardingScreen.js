@@ -60,7 +60,7 @@ const OnboardingScreen = ({navigation}) => {
           {
             backgroundColor: '#a6e4d0',
             image: <Image source={require('../assets/onboarding-img1.png')} />,
-            title: 'The Kitchen Assistant ',
+            title: 'KitchenPal',
             subtitle: 'Your trusty kitchen companion',
           },
           {

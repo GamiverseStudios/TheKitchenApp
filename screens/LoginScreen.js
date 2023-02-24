@@ -25,7 +25,7 @@ const LoginScreen = ({navigation}) => {
         source={require('../assets/appIcon/The-Kitchen-Assistant-Icon.png')}
         style={styles.logo}
       />
-      <Text style={styles.text}>The Kitchen Assistant</Text>
+      <Text style={styles.text}>KitchenPal</Text>
       <Text style={{paddingTop:50}}> </Text>
         <FormInput
             labelValue={email}

@@ -17,7 +17,7 @@ const Tab = createBottomTabNavigator();
 const RecipeStack = ({navigation}) => (
   <Stack.Navigator>
     <Stack.Screen
-      name="The Kitchen Assistant"
+      name="KitchenPal"
       component={RecipeScreen}
       options={{
         headerTitleAlign: 'center',
@@ -37,7 +37,7 @@ const RecipeStack = ({navigation}) => (
       name="PlanningScreen"
       component={PlanningScreen}
       options={{
-        title: 'The Kitchen Assistant',
+        title: 'KitchenPal',
         headerTitleAlign: 'center',
         headerStyle: {
           backgroundColor: '#2e64e515',
@@ -75,7 +75,7 @@ const RecipeStack = ({navigation}) => (
       name="ShoppingListScreen"
       component={ShoppingListScreen}
       options={{
-        title: 'The Kitchen Assistant',
+        title: 'KitchenPal',
         headerTitleAlign: 'center',
         headerTitleStyle: {
           color: '#f3f7f0',
@@ -98,7 +98,7 @@ const PlanningStack = ({navigation}) => (
         name="PlanningScreen"
         component={PlanningScreen}
         options={{
-            title: 'The Kitchen Assistant',
+            title: 'KitchenPal',
             headerTitleAlign: 'center',
             headerTitleStyle: {
                 color: '#f3f7f0',
@@ -122,7 +122,7 @@ const PlanningStack = ({navigation}) => (
           name="ShoppingListScreen"
           component={ShoppingListScreen}
           options={{
-          title: 'The Kitchen Assistant',
+          title: 'KitchenPal',
           headerTitleAlign: 'center',
           headerTitleStyle: {
             color: '#f3f7f0',
@@ -145,7 +145,7 @@ const ShoppingListStack = ({navigation}) => (
         name="ShoppingListScreen"
         component={ShoppingListScreen}
         options={{
-        title: 'The Kitchen Assistant',
+        title: 'KitchenPal',
         headerTitleAlign: 'center',
         headerTitleStyle: {
           color: '#f3f7f0',
